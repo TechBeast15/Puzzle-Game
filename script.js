@@ -60,11 +60,24 @@ window.addEventListener("load", function () {
   const preloader = document.getElementById("preloader");
   const fullUI = document.getElementById("fullUI");
 
-  // Create the Enter button
+  // Create and show Loading text
+  const loadingText = document.createElement("p");
+  loadingText.id = "loadingText";
+  loadingText.textContent = "Loading...";
+  preloader.appendChild(loadingText);
+
+  // Create the Enter button (initially hidden)
   const enterButton = document.createElement("button");
   enterButton.id = "enterButton";
   enterButton.textContent = "Play";
+  enterButton.style.display = "none"; // Hide initially
   preloader.appendChild(enterButton);
+
+  // Show the Play button after a short delay and remove Loading text
+  setTimeout(() => {
+    loadingText.remove();
+    enterButton.style.display = "inline-block";
+  }, 1000); // Adjust delay if needed
 
   let hasEntered = false;
 
@@ -99,10 +112,12 @@ window.addEventListener("load", function () {
 
   // Arrow icon adjustment based on window size
   const arrowIcon = document.getElementById("arrow");
-  if (window.innerWidth < 576) {
-    arrowIcon.classList.add("bi-arrow-90deg-right");
-  } else {
-    arrowIcon.classList.add("bi-arrow-90deg-down");
+  if (arrowIcon) {
+    if (window.innerWidth < 576) {
+      arrowIcon.classList.add("bi-arrow-90deg-right");
+    } else {
+      arrowIcon.classList.add("bi-arrow-90deg-down");
+    }
   }
 });
 

@@ -43,6 +43,13 @@ section {
   transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
+#loadingText {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .preloader button {
   border: none;
   background-image: url("./Assets/Img/AnimationImages/buttonAnimation.gif");
