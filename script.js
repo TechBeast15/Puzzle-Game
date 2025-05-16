@@ -195,6 +195,70 @@ class PuzzleGame {
     });
   }
 
+  // loadStage(button) {
+  //   if (!button.classList.contains("open")) {
+  //     alert("🔒 Stage is locked.");
+  //     return;
+  //   }
+
+  //   const stageNumber = parseInt(button.dataset.numberAccess, 10);
+  //   if (
+  //     isNaN(stageNumber) ||
+  //     stageNumber < 1 ||
+  //     stageNumber > this.stages.length
+  //   ) {
+  //     alert("Invalid stage.");
+  //     return;
+  //   }
+
+  //   this.currentStage = stageNumber;
+
+  //   this.fullImageHere.forEach((img) => {
+  //     img.src = FullImages[stageNumber - 1];
+  //   });
+
+  //   const stageImages = this.stages[stageNumber - 1];
+
+  //   this.stageLabel.textContent = `STAGES - ${stageNumber}`;
+
+  //   this.mainPage.classList.add("fade-out");
+  //   // setTimeout(() => {
+  //   this.mainPage.style.display = "none";
+  //   this.stageContainer.style.display = "block";
+  //   this.playNotice.style.display = "flex";
+  //   this.stINQ.textContent = `STAGE - ${stageNumber}`;
+  //   this.renderPuzzle(stageImages);
+  //   // }, 1000);
+  // }
+
+  // renderPuzzle(images) {
+  //   this.puzzleContainer.innerHTML = "";
+
+  //   const entries = this.shuffle(Object.entries(images));
+  //   const length = entries.length;
+  //   const size = Math.sqrt(length);
+  //   const percent = 100 / size;
+
+  //   for (let [key, value] of entries) {
+  //     const box = document.createElement("div");
+  //     const img = document.createElement("img");
+
+  //     box.className = "boxImg";
+  //     img.className = "puzzleImage";
+  //     img.id = `img${key}`;
+  //     img.src = `./Assets/Img/${value}`;
+  //     img.setAttribute("draggable", true);
+
+  //     box.appendChild(img);
+  //     box.style.width = percent + "%";
+  //     box.style.height = percent + "%";
+  //     this.puzzleContainer.appendChild(box);
+  //   }
+
+  //   this.enableDragDrop();
+  // }
+
+  // Function to load the selected stage
   loadStage(button) {
     if (!button.classList.contains("open")) {
       alert("🔒 Stage is locked.");
@@ -213,6 +277,7 @@ class PuzzleGame {
 
     this.currentStage = stageNumber;
 
+    // Update full image preview for the selected stage
     this.fullImageHere.forEach((img) => {
       img.src = FullImages[stageNumber - 1];
     });
@@ -221,24 +286,31 @@ class PuzzleGame {
 
     this.stageLabel.textContent = `STAGES - ${stageNumber}`;
 
+    // Hide the main page and show the stage container with the play notice
     this.mainPage.classList.add("fade-out");
-    // setTimeout(() => {
-    this.mainPage.style.display = "none";
-    this.stageContainer.style.display = "block";
-    this.playNotice.style.display = "flex";
-    this.stINQ.textContent = `STAGE - ${stageNumber}`;
-    this.renderPuzzle(stageImages);
-    // }, 1000);
+    setTimeout(() => {
+      this.mainPage.style.display = "none";
+      this.stageContainer.style.display = "block";
+      this.playNotice.style.display = "flex"; // Show play notice
+      this.stINQ.textContent = `STAGE - ${stageNumber}`;
+
+      // Start loading the puzzle images, then enable play button when done
+      this.renderPuzzle(stageImages);
+    }, 500);
   }
 
+  // Method to render the puzzle pieces based on the given images
   renderPuzzle(images) {
-    this.puzzleContainer.innerHTML = "";
+    this.puzzleContainer.innerHTML = ""; // Clear existing puzzle
 
     const entries = this.shuffle(Object.entries(images));
     const length = entries.length;
     const size = Math.sqrt(length);
     const percent = 100 / size;
 
+    let loadedImagesCount = 0; // Track the number of loaded images
+
+    // Create puzzle pieces (divs with images)
     for (let [key, value] of entries) {
       const box = document.createElement("div");
       const img = document.createElement("img");
@@ -253,9 +325,27 @@ class PuzzleGame {
       box.style.width = percent + "%";
       box.style.height = percent + "%";
       this.puzzleContainer.appendChild(box);
+
+      // Check when the image has fully loaded
+      img.onload = () => {
+        loadedImagesCount++;
+        // Once all images are loaded, enable the play button
+        if (loadedImagesCount === entries.length) {
+          this.enablePlayButton(); // Enable play button when all images are loaded
+        }
+      };
     }
 
-    this.enableDragDrop();
+    this.enableDragDrop(); // Enable drag-and-drop functionality (but not until images are fully loaded)
+  }
+
+  // Enable the play button after all images are loaded
+  enablePlayButton() {
+    const playButton = this.playNotice.querySelector(".play-button");
+    playButton.disabled = false; // Enable the play button
+    playButton.addEventListener("click", () => {
+      this.startStage(); // Start the game when play button is clicked
+    });
   }
 
   startStage() {
@@ -263,6 +353,7 @@ class PuzzleGame {
 
     this.stageContainer.style.display = "block";
     this.playNotice.style.display = "none";
+     this.renderPuzzle(this.stages[this.currentStage - 1]); // Ensure puzzle is rendered
   }
 
   enableDragDrop() {
