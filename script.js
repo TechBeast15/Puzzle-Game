@@ -195,68 +195,6 @@ class PuzzleGame {
     });
   }
 
-  // loadStage(button) {
-  //   if (!button.classList.contains("open")) {
-  //     alert("🔒 Stage is locked.");
-  //     return;
-  //   }
-
-  //   const stageNumber = parseInt(button.dataset.numberAccess, 10);
-  //   if (
-  //     isNaN(stageNumber) ||
-  //     stageNumber < 1 ||
-  //     stageNumber > this.stages.length
-  //   ) {
-  //     alert("Invalid stage.");
-  //     return;
-  //   }
-
-  //   this.currentStage = stageNumber;
-
-  //   this.fullImageHere.forEach((img) => {
-  //     img.src = FullImages[stageNumber - 1];
-  //   });
-
-  //   const stageImages = this.stages[stageNumber - 1];
-
-  //   this.stageLabel.textContent = `STAGES - ${stageNumber}`;
-
-  //   this.mainPage.classList.add("fade-out");
-  //   // setTimeout(() => {
-  //   this.mainPage.style.display = "none";
-  //   this.stageContainer.style.display = "block";
-  //   this.playNotice.style.display = "flex";
-  //   this.stINQ.textContent = `STAGE - ${stageNumber}`;
-  //   this.renderPuzzle(stageImages);
-  //   // }, 1000);
-  // }
-
-  // renderPuzzle(images) {
-  //   this.puzzleContainer.innerHTML = "";
-
-  //   const entries = this.shuffle(Object.entries(images));
-  //   const length = entries.length;
-  //   const size = Math.sqrt(length);
-  //   const percent = 100 / size;
-
-  //   for (let [key, value] of entries) {
-  //     const box = document.createElement("div");
-  //     const img = document.createElement("img");
-
-  //     box.className = "boxImg";
-  //     img.className = "puzzleImage";
-  //     img.id = `img${key}`;
-  //     img.src = `./Assets/Img/${value}`;
-  //     img.setAttribute("draggable", true);
-
-  //     box.appendChild(img);
-  //     box.style.width = percent + "%";
-  //     box.style.height = percent + "%";
-  //     this.puzzleContainer.appendChild(box);
-  //   }
-
-  //   this.enableDragDrop();
-  // }
 
   // Function to load the selected stage
   loadStage(button) {
@@ -276,6 +214,7 @@ class PuzzleGame {
     }
 
     this.currentStage = stageNumber;
+   this.stageContainer.style.backgroundImage = `url(${StageBGImages[stageNumber-1]})`;
 
     // Update full image preview for the selected stage
     this.fullImageHere.forEach((img) => {
@@ -353,7 +292,7 @@ class PuzzleGame {
 
     this.stageContainer.style.display = "block";
     this.playNotice.style.display = "none";
-     this.renderPuzzle(this.stages[this.currentStage - 1]); // Ensure puzzle is rendered
+    this.renderPuzzle(this.stages[this.currentStage - 1]); // Ensure puzzle is rendered
   }
 
   enableDragDrop() {
@@ -618,6 +557,137 @@ const STAGES = [
     35: "Stages/PuzzleSet5/35.png",
     36: "Stages/PuzzleSet5/36.png",
   },
+
+  {
+    1: "Stages/PuzzleSet6/1.jpeg",
+    2: "Stages/PuzzleSet6/2.jpeg",
+    3: "Stages/PuzzleSet6/3.jpeg",
+    4: "Stages/PuzzleSet6/4.jpeg",
+    5: "Stages/PuzzleSet6/5.jpeg",
+    6: "Stages/PuzzleSet6/6.jpeg",
+    7: "Stages/PuzzleSet6/7.jpeg",
+    8: "Stages/PuzzleSet6/8.jpeg",
+    9: "Stages/PuzzleSet6/9.jpeg",
+    10: "Stages/PuzzleSet6/10.jpeg",
+    11: "Stages/PuzzleSet6/11.jpeg",
+    12: "Stages/PuzzleSet6/12.jpeg",
+    13: "Stages/PuzzleSet6/13.jpeg",
+    14: "Stages/PuzzleSet6/14.jpeg",
+    15: "Stages/PuzzleSet6/15.jpeg",
+    16: "Stages/PuzzleSet6/16.jpeg",
+  },
+
+  {
+    1: "Stages/PuzzleSet7/1.jpeg",
+    2: "Stages/PuzzleSet7/2.jpeg",
+    3: "Stages/PuzzleSet7/3.jpeg",
+    4: "Stages/PuzzleSet7/4.jpeg",
+    5: "Stages/PuzzleSet7/5.jpeg",
+    6: "Stages/PuzzleSet7/6.jpeg",
+    7: "Stages/PuzzleSet7/7.jpeg",
+    8: "Stages/PuzzleSet7/8.jpeg",
+    9: "Stages/PuzzleSet7/9.jpeg",
+    10: "Stages/PuzzleSet7/10.jpeg",
+    11: "Stages/PuzzleSet7/11.jpeg",
+    12: "Stages/PuzzleSet7/12.jpeg",
+    13: "Stages/PuzzleSet7/13.jpeg",
+    14: "Stages/PuzzleSet7/14.jpeg",
+    15: "Stages/PuzzleSet7/15.jpeg",
+    16: "Stages/PuzzleSet7/16.jpeg",
+    17: "Stages/PuzzleSet7/17.jpeg",
+    18: "Stages/PuzzleSet7/18.jpeg",
+    19: "Stages/PuzzleSet7/19.jpeg",
+    20: "Stages/PuzzleSet7/20.jpeg",
+    21: "Stages/PuzzleSet7/21.jpeg",
+    22: "Stages/PuzzleSet7/22.jpeg",
+    23: "Stages/PuzzleSet7/23.jpeg",
+    24: "Stages/PuzzleSet7/24.jpeg",
+    25: "Stages/PuzzleSet7/25.jpeg",
+  },
+
+    {
+    1: "Stages/PuzzleSet8/1.jpeg",
+    2: "Stages/PuzzleSet8/2.jpeg",
+    3: "Stages/PuzzleSet8/3.jpeg",
+    4: "Stages/PuzzleSet8/4.jpeg",
+    5: "Stages/PuzzleSet8/5.jpeg",
+    6: "Stages/PuzzleSet8/6.jpeg",
+    7: "Stages/PuzzleSet8/7.jpeg",
+    8: "Stages/PuzzleSet8/8.jpeg",
+    9: "Stages/PuzzleSet8/9.jpeg",
+    10: "Stages/PuzzleSet8/10.jpeg",
+    11: "Stages/PuzzleSet8/11.jpeg",
+    12: "Stages/PuzzleSet8/12.jpeg",
+    13: "Stages/PuzzleSet8/13.jpeg",
+    14: "Stages/PuzzleSet8/14.jpeg",
+    15: "Stages/PuzzleSet8/15.jpeg",
+    16: "Stages/PuzzleSet8/16.jpeg",
+    17: "Stages/PuzzleSet8/17.jpeg",
+    18: "Stages/PuzzleSet8/18.jpeg",
+    19: "Stages/PuzzleSet8/19.jpeg",
+    20: "Stages/PuzzleSet8/20.jpeg",
+    21: "Stages/PuzzleSet8/21.jpeg",
+    22: "Stages/PuzzleSet8/22.jpeg",
+    23: "Stages/PuzzleSet8/23.jpeg",
+    24: "Stages/PuzzleSet8/24.jpeg",
+    25: "Stages/PuzzleSet8/25.jpeg",
+  },
+
+   {
+    1: "Stages/PuzzleSet9/1.jpeg",
+    2: "Stages/PuzzleSet9/2.jpeg",
+    3: "Stages/PuzzleSet9/3.jpeg",
+    4: "Stages/PuzzleSet9/4.jpeg",
+    5: "Stages/PuzzleSet9/5.jpeg",
+    6: "Stages/PuzzleSet9/6.jpeg",
+    7: "Stages/PuzzleSet9/7.jpeg",
+    8: "Stages/PuzzleSet9/8.jpeg",
+    9: "Stages/PuzzleSet9/9.jpeg",
+    10: "Stages/PuzzleSet9/10.jpeg",
+    11: "Stages/PuzzleSet9/11.jpeg",
+    12: "Stages/PuzzleSet9/12.jpeg",
+    13: "Stages/PuzzleSet9/13.jpeg",
+    14: "Stages/PuzzleSet9/14.jpeg",
+    15: "Stages/PuzzleSet9/15.jpeg",
+    16: "Stages/PuzzleSet9/16.jpeg",
+    17: "Stages/PuzzleSet9/17.jpeg",
+    18: "Stages/PuzzleSet9/18.jpeg",
+    19: "Stages/PuzzleSet9/19.jpeg",
+    20: "Stages/PuzzleSet9/20.jpeg",
+    21: "Stages/PuzzleSet9/21.jpeg",
+    22: "Stages/PuzzleSet9/22.jpeg",
+    23: "Stages/PuzzleSet9/23.jpeg",
+    24: "Stages/PuzzleSet9/24.jpeg",
+    25: "Stages/PuzzleSet9/25.jpeg",
+  },
+
+     {
+    1: "Stages/PuzzleSet10/1.jpeg",
+    2: "Stages/PuzzleSet10/2.jpeg",
+    3: "Stages/PuzzleSet10/3.jpeg",
+    4: "Stages/PuzzleSet10/4.jpeg",
+    5: "Stages/PuzzleSet10/5.jpeg",
+    6: "Stages/PuzzleSet10/6.jpeg",
+    7: "Stages/PuzzleSet10/7.jpeg",
+    8: "Stages/PuzzleSet10/8.jpeg",
+    9: "Stages/PuzzleSet10/9.jpeg",
+    10: "Stages/PuzzleSet10/10.jpeg",
+    11: "Stages/PuzzleSet10/11.jpeg",
+    12: "Stages/PuzzleSet10/12.jpeg",
+    13: "Stages/PuzzleSet10/13.jpeg",
+    14: "Stages/PuzzleSet10/14.jpeg",
+    15: "Stages/PuzzleSet10/15.jpeg",
+    16: "Stages/PuzzleSet10/16.jpeg",
+    17: "Stages/PuzzleSet10/17.jpeg",
+    18: "Stages/PuzzleSet10/18.jpeg",
+    19: "Stages/PuzzleSet10/19.jpeg",
+    20: "Stages/PuzzleSet10/20.jpeg",
+    21: "Stages/PuzzleSet10/21.jpeg",
+    22: "Stages/PuzzleSet10/22.jpeg",
+    23: "Stages/PuzzleSet10/23.jpeg",
+    24: "Stages/PuzzleSet10/24.jpeg",
+    25: "Stages/PuzzleSet10/25.jpeg",
+  },
   // repeat more stages as needed
 ];
 
@@ -627,7 +697,18 @@ const FullImages = [
   "Assets/Img/Stages/PuzzleSet3/fullImage.png",
   "Assets/Img/Stages/PuzzleSet4/fullImage.png",
   "Assets/Img/Stages/PuzzleSet5/fullImage.png",
+  "Assets/Img/Stages/PuzzleSet6/fullImage.jpeg",
+  "Assets/Img/Stages/PuzzleSet7/fullImage.jpeg",
+  "Assets/Img/Stages/PuzzleSet8/fullImage.jpeg",
+  "Assets/Img/Stages/PuzzleSet9/fullImage.jpeg",
+  "Assets/Img/Stages/PuzzleSet10/fullImage.jpeg",
 ];
+
+const StageBGImages =[
+  `https://i.pinimg.com/736x/ff/c8/a2/ffc8a2695f83e2ead09fef74c0dc1065.jpg`,
+  `https://i.pinimg.com/736x/f2/41/02/f24102b3419fd712d1931ada77b556d9.jpg`,
+  `https://i.pinimg.com/736x/ad/e9/48/ade94889319475e835f26231f1e490dd.jpg`
+]
 
 const cards = document.querySelectorAll(".card img");
 
