@@ -289,42 +289,57 @@ class PuzzleGame {
       });
     });
 
-    // Mobile Tap-to-Move
+    // Touch support for mobile devices
+    let touchImg = null;
 
-    // let selectedImg = null;
+    images.forEach((img) => {
+      img.addEventListener("touchstart", (e) => {
+        touchImg = img;
+        touchImg.classList.add("dragging");
+        playSound(pickSound);
+      });
+    });
 
-    // document.addEventListener("touchmove", function (event) {
-    //   console.log("Finger is moving on the screen");
-    //   // Prevent scrolling (optional)
-    //   event.preventDefault();
-    // });
+    boxes.forEach((box) => {
+      box.addEventListener("touchmove", (e) => {
+        if (!touchImg) return;
 
-    // images.forEach((img) => {
-    //   img.addEventListener("click", () => {
-    //     // Toggle selection
-    //     if (selectedImg === img) {
-    //       img.classList.remove("selected-img");
-    //       selectedImg = null;
-    //     } else {
-    //       document
-    //         .querySelectorAll(".puzzleImage")
-    //         .forEach((i) => i.classList.remove("selected-img"));
-    //       img.classList.add("selected-img");
-    //       selectedImg = img;
-    //     }
-    //   });
-    // });
+        const touch = e.touches[0];
+        const el = document.elementFromPoint(touch.clientX, touch.clientY);
 
-    // boxes.forEach((box) => {
-    //   box.addEventListener("click", () => {
-    //     if (selectedImg && box.children.length === 0) {
-    //       box.appendChild(selectedImg);
-    //       selectedImg.classList.remove("selected-img");
-    //       selectedImg = null;
-    //       this.checkSequence();
-    //     }
-    //   });
-    // });
+        // Optional visual feedback
+        boxes.forEach((b) => b.classList.remove("highlight-drop"));
+        if (el && el.classList.contains("boxImg") && el.children.length === 0) {
+          el.classList.add("highlight-drop");
+        }
+
+        e.preventDefault(); // Prevent page scroll
+      });
+
+      box.addEventListener("touchend", (e) => {
+        if (!touchImg) return;
+
+        const touch = e.changedTouches[0];
+        const dropTarget = document.elementFromPoint(
+          touch.clientX,
+          touch.clientY
+        );
+
+        if (
+          dropTarget &&
+          dropTarget.classList.contains("boxImg") &&
+          dropTarget.children.length === 0
+        ) {
+          dropTarget.appendChild(touchImg);
+          this.checkSequence();
+          playSound(dropSound);
+        }
+
+        touchImg.classList.remove("dragging");
+        boxes.forEach((b) => b.classList.remove("highlight-drop"));
+        touchImg = null;
+      });
+    });
   }
 
   checkSequence() {

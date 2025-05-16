@@ -602,6 +602,10 @@ section {
 
 /* REUSABLE CLASSES -------------------------------- */
 
+.dragging {
+  opacity: 0.5;
+}
+
 /* Fading effect */
 .fade-out {
   opacity: 0;
