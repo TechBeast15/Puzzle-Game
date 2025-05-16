@@ -1,0 +1,827 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: aliceblue;
+  user-select: none;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* PRELOADERPAGE------------------------------------ */
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    rgb(0, 0, 0) 0%,
+    rgb(80, 83, 83) 46%,
+    rgb(0, 0, 0) 100%
+  );
+
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+.preloader button {
+  border: none;
+  background-image: url("./Assets/Img/AnimationImages/buttonAnimation.gif");
+  background-position: center;
+  background-size: 100% 100%;
+  padding: 5px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: aliceblue;
+  font-family: cursive;
+  transition: filter 0.3s ease, color 0.3s ease;
+}
+
+.preloader button:hover {
+  filter: brightness(200%);
+  color: rgba(240, 248, 255, 0.514);
+  font-weight: 600;
+  text-shadow: 1px 1px 5px black;
+}
+
+/* FULL UI ----------------------------------------- */
+.fullUI {
+  /* border: 1px solid #e70808; */
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+/* MAIN PAGE -------------------------------------- */
+.mainPage {
+  /* border: 1px solid #91ff00; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("./Assets/Img/AnimationImages/PageImage.gif");
+  background-position: center;
+  background-size: 100% 100%;
+  filter: brightness(150%);
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+.header {
+  /* border: 1px solid #ff0000; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.nameHead,
+.namePuzz {
+  color: aliceblue;
+  font-size: 4rem;
+  font-family: fantasy;
+
+  background: url("./Assets/Img/AnimationImages/nameAnimation.gif");
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+
+.header .mainPageHeading{
+  /* border: 1px solid #000; */
+  width: 100%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+/* BUTTONS CARD STAGE MOVEMENT --------------------- */
+
+.stageNaviagebuttons {
+  /* border: 1px solid #000; */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.stageNaviagebuttons .shineeBtn:hover {
+  color: #858585;
+  box-shadow: 0 0px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* .stageNaviagebuttons  */
+
+/* STAGE INSIDE CARD CLICK-------------------------- */
+
+.stagesCard {
+  /* border: 3px solid #00ff55; */
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 30px;
+  overflow-x: scroll;
+  padding: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+
+.stagesCard .card {
+  /* border: 1px solid gray; */
+  flex-shrink: 0;
+  width: 18rem;
+  height: 75%;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
+  background-color: transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.card img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: auto;
+}
+
+
+.card .card-body {
+  /* border: 1px solid #000; */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: rgba(197, 160, 177, 0.842);
+  font-family: cursive;
+  text-shadow: 4px 5px 10px black;
+}
+
+/* STAGE PAGE ---------------------------------------*/
+
+.STAGE {
+  /* border: 1px solid #000; */
+  height: 100%;
+  width: 100%;
+  /* CHANGE ME +++++++++++++++++++++++++++++++++++++++++++++ */
+  background-image: url("https://i.pinimg.com/originals/2e/e1/29/2ee1293f31c32516cc837f46c5563034.gif");
+  background-size: 100% 100%;
+  background-position: center;
+
+  display: none;
+}
+
+/* STAGE MOVE START TO END ========= */
+.content {
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.buttons {
+  /* border: 1px solid #ff0303; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.buttons button {
+  background-color: transparent;
+  border: none;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+}
+
+#WHOSESTAGE {
+  font-size: 2rem;
+  font-family: cursive;
+  font-weight: 600;
+  color: aliceblue;
+  text-shadow: 0px 8px 10px black;
+  background: url("./Assets/Img/AnimationImages/settingBtn.gif");
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PUZZLE GAME BOX ========= */
+.GAME {
+  /* border: 1px solid #a6ff00; */
+  height: 78vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.ADDNWQ {
+  border: 3px solid #fffffff1;
+  border-radius: 10px;
+  background-color: #000000bb;
+  margin: 0px 5px;
+  padding: 10px;
+  width: 25%;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  box-shadow: inset 0px 0px 30px rgb(0, 0, 0);
+}
+
+.FullImage {
+  /* border: 3px solid #424242; */
+  width: 100%;
+  height: 50%;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.FullImage div {
+  /* border: 1px solid #d85050; */
+  height: 100%;
+}
+
+.FullImage div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine-rect 2.5s infinite;
+  pointer-events: none;
+}
+
+.FullImage div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 13px rgb(0, 0, 0);
+}
+
+.DORPBOX {
+  /* border: 3px solid #424242; */
+  border-radius: 10px;
+  margin: 0px 5px;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.GAME .DORPBOX h4 {
+  /* border: 1px solid #f55252; */
+  text-align: center;
+  color: rgb(129, 126, 126);
+  font-family: monospace;
+  text-shadow: 0px 3px 5px rgb(129, 126, 126);
+}
+
+.DORPIMG {
+  border: 2px solid #555353;
+  width: 100%;
+  height: 50%;
+  margin: 3%;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 8px rgb(126, 87, 87);
+  /* background-position: center;
+  background-size: 100% 100%; */
+}
+
+.DORPIMG img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px black;
+}
+
+.GAME .PUZZLEDIV {
+  border: 3px solid #ffffffb2;
+  border-radius: 10px;
+  background-color: #fffffff1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0px 0px 3px black;
+}
+
+.GAME .PUZZLEDIV .boxImg img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  box-shadow: 0px 0px 1px black;
+}
+
+/* WANT OT PLAY OR EXIT -------------------------------------- */
+
+.playNotice {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.863);
+
+  background-image: url("./Assets/Img/AnimationImages/WantToPlayBG.gif");
+  background-position: center;
+  background-size: 100% 100%;
+  display: none;
+  z-index: 1;
+}
+
+.playNotice div {
+  /* border: 5px solid #1a1919a1; */
+  border-radius: 10px;
+  background-color: #3a6e91;
+  background: linear-gradient(120deg, black, transparent, black);
+  width: 40%;
+  height: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0px 8px 50px black, inset 0px 0px 50px black;
+}
+
+.playNotice h2 {
+  font-weight: bolder;
+  font-size: 2rem;
+  background: url("./Assets/Img/AnimationImages/settingBtn.gif");
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.playNotice div button {
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 40px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.imageNotice {
+  padding: 0px !important;
+  opacity: 0.7;
+}
+
+.STGImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.cancleBtn {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  padding: 5px 15px !important;
+  border-radius: 100% !important;
+  background: linear-gradient(145deg, #e97474, #ff0202) !important;
+  color: white;
+}
+
+/* RECTANGLE BUTTON ========= */
+.playNotice div button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine-rect 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes shine-rect {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.playNotice div button:hover {
+  transform: scale(1.05);
+}
+
+/* FULL SCREEN : PUZZLE IMAGE -------------------------------- */
+.fullScreenSection {
+  background-color: #000000ec;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+.fullScreenSection button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+  background: linear-gradient(145deg, #4db8ff, #0059b3);
+  color: white;
+}
+
+.fullScreenSection button:hover {
+  color: #858585;
+  box-shadow: 0 0px 25px rgba(0, 0, 0, 0.3);
+}
+
+.boxFullScreen {
+  border: 3px solid #fdfdfd;
+  padding: 5px;
+  border-radius: 10px;
+  height: 80%;
+  margin: 10px;
+}
+
+.boxFullScreen img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* FULL SCREEN PAGE : SETTING -------------------------------- */
+
+.settingSection {
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000ec;
+  background: linear-gradient(145deg, #e9747463, #ff02028e);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.settingDiv {
+  border: 5px solid rgb(34, 17, 17);
+  border-radius: 10px;
+  width: 30%;
+  height: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.945);
+  background: url("./Assets/Img/SettingBoxBG.jpg");
+  background-size: 100% 100%;
+  background-position: center;
+  box-shadow: 0px 8px 25px rgb(0, 0, 0);
+}
+
+.settingDiv .closeFullScreenButton {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  padding: 0px 10px !important;
+  border-radius: 100% !important;
+  background: linear-gradient(145deg, #e97474, #ff0202) !important;
+  color: white;
+}
+
+.settingDiv div {
+  /* border: 1px solid #c0aeae; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.settingDiv div label {
+  /* border: 1px solid red; */
+  font-weight: 600;
+  font-family: serif;
+  font-size: x-large;
+  color: aliceblue;
+  text-shadow: 0px 8px 10px black;
+}
+
+.settingDiv div button {
+  font-size: xx-large;
+  padding: 1px 10px;
+  border: none;
+  color: #ff0000;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.settingDiv div .resetButton {
+  color: #ff0000;
+}
+
+/* REUSABLE CLASSES -------------------------------- */
+
+/* Fading effect */
+.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+.open img {
+  opacity: 1 !important;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.colorBtn {
+  color: rgb(0, 255, 0) !important;
+}
+
+/* SHINEE BTN FOR CIRCLE BUTTON */
+.shineeBtn {
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d8a9a9, #ce1a1a);
+  color: white;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 1px 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.shineeBtn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.26) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: rotate(25deg);
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+/* SETTING BUTTON BACKGROUND ======================== */
+
+
+
+.settingBtn {
+  background: transparent;
+  border: none;
+}
+
+.settingBtn i {
+  
+  font-size: xx-large;
+  background: radial-gradient(
+    circle,
+    rgba(27, 27, 27, 0.753) 0%,
+    rgb(0, 0, 0) 100%
+  );
+
+  background: url("./Assets/Img/AnimationImages/settingBtn.gif");
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.settingBtn i:hover {
+  
+  background: url("./Assets/Img/AnimationImages/nameAnimation.gif");
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  
+ 
+}
+
+/* RESPONSIVE UI STYLES------------------------------ */
+
+@media screen and (max-width: 576px) {
+  .stagesCard {
+    flex-direction: column;
+  }
+
+  .stagesCard .card {
+    flex-direction: column;
+    width: 15rem;
+  }
+
+  .GAME {
+    flex-direction: column;
+    align-items: center;
+    height: 75vh;
+  }
+
+  .ADDNWQ {
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 4px !important;
+  }
+
+  .DORPBOX {
+    width: 100% !important;
+    height: 100% !important;
+
+    flex-direction: row !important;
+  }
+
+  .DORPIMG {
+    /* border: 1px solid #ff0404 !important; */
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  #WHOSESTAGE {
+    font-size: 1.5rem;
+  }
+
+  .FullImage {
+    width: 70%;
+    height: 100%;
+  }
+
+  .GAME .DORPBOX h4 {
+    font-size: small;
+    width: 50%;
+  }
+
+  .settingDiv {
+    width: 100% !important;
+  }
+
+  /* .boxFullScreen {
+    margin: 5% !important;
+  } */
+
+  .boxFullScreen {
+    height: 50% !important;
+  }
+
+  .playNotice div {
+    width: 80% !important;
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .GAME .DORPBOX h4 {
+    font-size: small;
+  }
+
+  .settingDiv {
+    width: 60% !important;
+  }
+
+  /* .boxFullScreen {
+    margin: 10% ;
+  } */
+
+  .boxFullScreen {
+    height: 70%;
+  }
+
+  .playNotice div {
+    width: 80% !important;
+    /* padding: 30px; */
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .settingDiv {
+    width: 40%;
+  }
+
+  /* .boxFullScreen {
+    margin: 12% ;
+  } */
+}
+
+@media screen and (max-width: 1200px) {
+  .settingDiv {
+    width: 40%;
+  }
+
+  /* .boxFullScreen {
+    margin: 20% !important;
+  } */
+}
+
+@media screen and (max-width: 1400px) {
+  .playNotice div {
+    width: 50%;
+  }
+
+  .namePuzz {
+    font-size: 2.5rem;
+  }
+}
