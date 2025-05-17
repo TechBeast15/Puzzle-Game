@@ -912,3 +912,11 @@ section {
     font-size: 2.5rem;
   }
 }
+
+
+.floating-drag-img {
+  width: 80px; /* Match your puzzle image size */
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

@@ -290,97 +290,216 @@ class PuzzleGame {
     this.renderPuzzle(this.stages[this.currentStage - 1]); // Ensure puzzle is rendered
   }
 
-  enableDragDrop() {
-    const images = document.querySelectorAll(".puzzleImage");
-    const boxes = document.querySelectorAll(".boxImg");
+  // enableDragDrop() {
+  //   const images = document.querySelectorAll(".puzzleImage");
+  //   const boxes = document.querySelectorAll(".boxImg");
 
-    images.forEach((img) => {
-      img.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setData("text/plain", img.id);
-        img.style.opacity = "0.4";
+  //   images.forEach((img) => {
+  //     img.addEventListener("dragstart", (e) => {
+  //       e.dataTransfer.setData("text/plain", img.id);
+  //       img.style.opacity = "0.4";
 
-        playSound(pickSound);
-      });
+  //       playSound(pickSound);
+  //     });
 
-      img.addEventListener("dragend", (e) => {
-        img.style.opacity = "1";
-      });
+  //     img.addEventListener("dragend", (e) => {
+  //       img.style.opacity = "1";
+  //     });
+  //   });
+
+  //   boxes.forEach((box) => {
+  //     box.addEventListener("dragover", (e) => {
+  //       if (box.children.length === 0) {
+  //         e.preventDefault();
+  //       }
+  //     });
+
+  //     box.addEventListener("drop", (e) => {
+  //       e.preventDefault();
+
+  //       const id = e.dataTransfer.getData("text/plain");
+  //       const draggedImg = document.getElementById(id);
+
+  //       if (draggedImg && box.children.length === 0) {
+  //         box.appendChild(draggedImg);
+  //         this.checkSequence();
+  //       }
+
+  //       playSound(dropSound);
+  //     });
+  //   });
+
+  //   // Touch support for mobile devices
+  //   let touchImg = null;
+
+  //   images.forEach((img) => {
+  //     img.addEventListener("touchstart", (e) => {
+  //       touchImg = img;
+  //       touchImg.classList.add("dragging");
+  //       playSound(pickSound);
+  //     });
+  //   });
+
+  //   boxes.forEach((box) => {
+  //     box.addEventListener("touchmove", (e) => {
+  //       if (!touchImg) return;
+
+  //       const touch = e.touches[0];
+  //       const el = document.elementFromPoint(touch.clientX, touch.clientY);
+
+  //       // Optional visual feedback
+  //       boxes.forEach((b) => b.classList.remove("highlight-drop"));
+  //       if (el && el.classList.contains("boxImg") && el.children.length === 0) {
+  //         el.classList.add("highlight-drop");
+  //       }
+
+  //       e.preventDefault(); // Prevent page scroll
+  //     });
+
+  //     box.addEventListener("touchend", (e) => {
+  //       if (!touchImg) return;
+
+  //       const touch = e.changedTouches[0];
+  //       const dropTarget = document.elementFromPoint(
+  //         touch.clientX,
+  //         touch.clientY
+  //       );
+
+  //       if (
+  //         dropTarget &&
+  //         dropTarget.classList.contains("boxImg") &&
+  //         dropTarget.children.length === 0
+  //       ) {
+  //         dropTarget.appendChild(touchImg);
+  //         this.checkSequence();
+  //         playSound(dropSound);
+  //       }
+
+  //       touchImg.classList.remove("dragging");
+  //       boxes.forEach((b) => b.classList.remove("highlight-drop"));
+  //       touchImg = null;
+  //     });
+  //   });
+  // }
+
+enableDragDrop() {
+  const images = document.querySelectorAll(".puzzleImage");
+  const boxes = document.querySelectorAll(".boxImg");
+
+  // --- DESKTOP SUPPORT ---
+  images.forEach((img) => {
+    img.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", img.id);
+      img.style.opacity = "0.4";
+      playSound(pickSound);
     });
 
-    boxes.forEach((box) => {
-      box.addEventListener("dragover", (e) => {
-        if (box.children.length === 0) {
-          e.preventDefault();
-        }
-      });
+    img.addEventListener("dragend", () => {
+      img.style.opacity = "1";
+    });
+  });
 
-      box.addEventListener("drop", (e) => {
+  boxes.forEach((box) => {
+    box.addEventListener("dragover", (e) => {
+      if (box.children.length === 0) {
         e.preventDefault();
+      }
+    });
 
-        const id = e.dataTransfer.getData("text/plain");
-        const draggedImg = document.getElementById(id);
+    box.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const id = e.dataTransfer.getData("text/plain");
+      const draggedImg = document.getElementById(id);
 
-        if (draggedImg && box.children.length === 0) {
-          box.appendChild(draggedImg);
-          this.checkSequence();
-        }
-
+      if (draggedImg && box.children.length === 0) {
+        box.appendChild(draggedImg);
+        this.checkSequence();
         playSound(dropSound);
-      });
+      }
+    });
+  });
+
+  // --- MOBILE TOUCH SUPPORT WITH VISUAL DRAGGING ---
+  let touchImg = null;
+  let floatingImg = null;
+
+  images.forEach((img) => {
+    img.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      touchImg = img;
+
+      // Clone image for visual feedback
+      floatingImg = img.cloneNode(true);
+      floatingImg.style.position = "fixed";
+      floatingImg.style.pointerEvents = "none";
+      floatingImg.style.opacity = "0.7";
+      floatingImg.style.zIndex = "9999";
+      floatingImg.classList.add("floating-drag-img");
+
+      document.body.appendChild(floatingImg);
+
+      const touch = e.touches[0];
+      floatingImg.style.left = touch.clientX + "px";
+      floatingImg.style.top = touch.clientY + "px";
+
+      playSound(pickSound);
+    });
+  });
+
+  boxes.forEach((box) => {
+    box.addEventListener("touchmove", (e) => {
+      if (!touchImg || !floatingImg) return;
+
+      const touch = e.touches[0];
+      floatingImg.style.left = touch.clientX + "px";
+      floatingImg.style.top = touch.clientY + "px";
+
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      boxes.forEach((b) => b.classList.remove("highlight-drop"));
+      if (el && el.classList.contains("boxImg") && el.children.length === 0) {
+        el.classList.add("highlight-drop");
+      }
+
+      e.preventDefault(); // Prevent scroll
     });
 
-    // Touch support for mobile devices
-    let touchImg = null;
+    box.addEventListener("touchend", (e) => {
+      if (!touchImg || !floatingImg) return;
 
-    images.forEach((img) => {
-      img.addEventListener("touchstart", (e) => {
-        touchImg = img;
-        touchImg.classList.add("dragging");
-        playSound(pickSound);
-      });
+      const touch = e.changedTouches[0];
+      const dropTarget = document.elementFromPoint(
+        touch.clientX,
+        touch.clientY
+      );
+
+      if (
+        dropTarget &&
+        dropTarget.classList.contains("boxImg") &&
+        dropTarget.children.length === 0
+      ) {
+        dropTarget.appendChild(touchImg);
+        this.checkSequence();
+        playSound(dropSound);
+      }
+
+      boxes.forEach((b) => b.classList.remove("highlight-drop"));
+
+      document.body.removeChild(floatingImg);
+      floatingImg = null;
+      touchImg = null;
     });
+  });
 
-    boxes.forEach((box) => {
-      box.addEventListener("touchmove", (e) => {
-        if (!touchImg) return;
-
-        const touch = e.touches[0];
-        const el = document.elementFromPoint(touch.clientX, touch.clientY);
-
-        // Optional visual feedback
-        boxes.forEach((b) => b.classList.remove("highlight-drop"));
-        if (el && el.classList.contains("boxImg") && el.children.length === 0) {
-          el.classList.add("highlight-drop");
-        }
-
-        e.preventDefault(); // Prevent page scroll
-      });
-
-      box.addEventListener("touchend", (e) => {
-        if (!touchImg) return;
-
-        const touch = e.changedTouches[0];
-        const dropTarget = document.elementFromPoint(
-          touch.clientX,
-          touch.clientY
-        );
-
-        if (
-          dropTarget &&
-          dropTarget.classList.contains("boxImg") &&
-          dropTarget.children.length === 0
-        ) {
-          dropTarget.appendChild(touchImg);
-          this.checkSequence();
-          playSound(dropSound);
-        }
-
-        touchImg.classList.remove("dragging");
-        boxes.forEach((b) => b.classList.remove("highlight-drop"));
-        touchImg = null;
-      });
-    });
-  }
+  // Cleanup on global touchend (in case of drop outside box)
+  document.addEventListener("touchend", () => {
+    if (floatingImg) {
+      document.body.removeChild(floatingImg);
+      floatingImg = null;
+    }
+    touchImg = null;
+    boxes.forEach((b) => b.classList.remove("highlight-drop"));
+  });
+}
 
   checkSequence() {
     const boxes = document.querySelectorAll(".boxImg");
