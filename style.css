@@ -39,7 +39,6 @@ section {
     rgb(0, 0, 0) 100%
   );
 
-  
   z-index: 9999;
   opacity: 1;
   transition: opacity 1.2s ease, visibility 1.2s ease;
@@ -50,7 +49,7 @@ section {
   color: white;
   margin-bottom: 1rem;
   text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .preloader button {
@@ -119,10 +118,9 @@ section {
   background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
 }
 
-.header .mainPageHeading{
+.header .mainPageHeading {
   /* border: 1px solid #000; */
   width: 100%;
   text-align: center;
@@ -214,7 +212,6 @@ section {
   pointer-events: auto;
 }
 
-
 .card .card-body {
   /* border: 1px solid #000; */
   margin: 0;
@@ -235,7 +232,7 @@ section {
   /* background-image: url("https://i.pinimg.com/originals/2e/e1/29/2ee1293f31c32516cc837f46c5563034.gif"); */
   background-size: 100% 100%;
   background-position: center;
-  
+
   display: none;
 }
 
@@ -254,6 +251,11 @@ section {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  /* border: 1px solid #000; */
+  background-color: rgba(255, 255, 255, 0.308);
+  padding: 1px 15px;
+  border-radius: 10px;
 }
 
 .buttons button {
@@ -272,6 +274,10 @@ section {
   background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  /* border: 1px solid #000;
+  padding: 5px 15px;
+  border-radius: 10px; */
 }
 
 /* PUZZLE GAME BOX ========= */
@@ -586,9 +592,8 @@ section {
   background-size: 100% 100%;
   background-position: center;
   box-shadow: 0px 8px 25px rgb(0, 0, 0);
-  overflow: hidden!important;
+  overflow: hidden !important;
 }
-
 
 .settingDiv .closeFullScreenButton {
   position: absolute !important;
@@ -609,7 +614,6 @@ section {
   align-items: center;
   padding: 3px;
   position: relative;
-  
 }
 
 .settingDiv::before {
@@ -638,7 +642,6 @@ section {
     left: 125%;
   }
 }
-
 
 .settingDiv div label {
   /* border: 1px solid red; */
@@ -736,15 +739,21 @@ section {
 
 /* SETTING BUTTON BACKGROUND ======================== */
 
-
+.menuBTNS {
+  /* border: 1px solid #000; */
+  /* box-shadow: 0px 0px 10px white; */
+  padding: 1px 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.308);
+}
 
 .settingBtn {
   background: transparent;
   border: none;
+  /* border: 1px solid #000; */
 }
 
 .settingBtn i {
-  
   font-size: xx-large;
   background: radial-gradient(
     circle,
@@ -759,15 +768,11 @@ section {
 }
 
 .settingBtn i:hover {
-  
   background: url("./Assets/Img/AnimationImages/nameAnimation.gif");
   background-size: cover;
   background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  
- 
 }
 
 /* RESPONSIVE UI STYLES------------------------------ */
@@ -780,7 +785,6 @@ section {
   }
 
   .stagesCard .card {
-    
     flex-direction: column;
     width: 15rem;
   }
@@ -790,7 +794,7 @@ section {
     align-items: center;
     height: 72vh;
 
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
   }
 
   .ADDNWQ {

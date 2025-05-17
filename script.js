@@ -89,19 +89,19 @@ window.addEventListener("load", function () {
       preloader.style.display = "none";
       fullUI.classList.add("fade-in");
 
-      backgroundMusic
-        .play()
-        .then(() => {
-          isMusicPlaying = true;
-          const musicButton = document.querySelector(".musicButton");
-          updateMusicButtonUI(musicButton);
-        })
-        .catch((err) => {
-          console.warn("Autoplay blocked:", err);
-          isMusicPlaying = false;
-        });
+      // backgroundMusic
+      //   .play()
+      //   .then(() => {
+      //     isMusicPlaying = true;
+      //     const musicButton = document.querySelector(".musicButton");
+      //     updateMusicButtonUI(musicButton);
+      //   })
+      //   .catch((err) => {
+      //     console.warn("Autoplay blocked:", err);
+      //     isMusicPlaying = false;
+      //   });
 
-      isSoundEnabled = true;
+      // isSoundEnabled = true;
     }, 1000);
   });
 
@@ -190,7 +190,6 @@ class PuzzleGame {
     });
   }
 
-
   // Function to load the selected stage
   loadStage(button) {
     if (!button.classList.contains("open")) {
@@ -209,7 +208,9 @@ class PuzzleGame {
     }
 
     this.currentStage = stageNumber;
-   this.stageContainer.style.backgroundImage = `url(${StageBGImages[stageNumber-1]})`;
+    this.stageContainer.style.backgroundImage = `url(${
+      StageBGImages[stageNumber - 1]
+    })`;
 
     // Update full image preview for the selected stage
     this.fullImageHere.forEach((img) => {
@@ -222,12 +223,11 @@ class PuzzleGame {
 
     // Hide the main page and show the stage container with the play notice
     this.mainPage.classList.add("fade-out");
+    this.playNotice.style.display = "flex"; // Show play notice
+    this.stINQ.textContent = `STAGE - ${stageNumber}`;
     setTimeout(() => {
       this.mainPage.style.display = "none";
       this.stageContainer.style.display = "block";
-      this.playNotice.style.display = "flex"; // Show play notice
-      this.stINQ.textContent = `STAGE - ${stageNumber}`;
-
       // Start loading the puzzle images, then enable play button when done
       this.renderPuzzle(stageImages);
     }, 500);
@@ -600,7 +600,7 @@ const STAGES = [
     25: "Stages/PuzzleSet7/25.jpeg",
   },
 
-    {
+  {
     1: "Stages/PuzzleSet8/1.jpeg",
     2: "Stages/PuzzleSet8/2.jpeg",
     3: "Stages/PuzzleSet8/3.jpeg",
@@ -628,7 +628,7 @@ const STAGES = [
     25: "Stages/PuzzleSet8/25.jpeg",
   },
 
-   {
+  {
     1: "Stages/PuzzleSet9/1.jpeg",
     2: "Stages/PuzzleSet9/2.jpeg",
     3: "Stages/PuzzleSet9/3.jpeg",
@@ -656,7 +656,7 @@ const STAGES = [
     25: "Stages/PuzzleSet9/25.jpeg",
   },
 
-     {
+  {
     1: "Stages/PuzzleSet10/1.jpeg",
     2: "Stages/PuzzleSet10/2.jpeg",
     3: "Stages/PuzzleSet10/3.jpeg",
@@ -699,11 +699,18 @@ const FullImages = [
   "Assets/Img/Stages/PuzzleSet10/fullImage.jpeg",
 ];
 
-const StageBGImages =[
-  `https://i.pinimg.com/736x/ff/c8/a2/ffc8a2695f83e2ead09fef74c0dc1065.jpg`,
-  `https://i.pinimg.com/736x/f2/41/02/f24102b3419fd712d1931ada77b556d9.jpg`,
-  `https://i.pinimg.com/736x/ad/e9/48/ade94889319475e835f26231f1e490dd.jpg`
-]
+const StageBGImages = [
+  `https://i.pinimg.com/736x/80/27/c6/8027c6c615900bf009b322294b61fcb2.jpg`,
+  `https://i.pinimg.com/736x/a5/3c/59/a53c59346cd25f1cb3b1f3d177972815.jpg`,
+  `https://i.pinimg.com/736x/82/5a/8b/825a8b332cd24f3d4695b22887ba49d6.jpg`,
+  `https://i.pinimg.com/736x/cb/38/c2/cb38c2061d676926ba0cae7fd727e161.jpg`,
+  `https://i.pinimg.com/736x/e2/39/09/e23909efedbb8db827b676d00e9393a7.jpg`,
+  `https://i.pinimg.com/736x/52/ea/15/52ea151ca15da4415e30547d3b745aab.jpg`,
+  `https://i.pinimg.com/736x/39/10/0c/39100c809e8e390b117feb268bb3c0fa.jpg`,
+  `https://i.pinimg.com/736x/b2/39/38/b23938911980848ff8a0863d76adc18d.jpg`,
+  `https://i.pinimg.com/736x/4a/bd/c1/4abdc1f3e1e8f68e2a87c3cb7744bd38.jpg`,
+   `https://i.pinimg.com/736x/1e/42/be/1e42beccb7cc14b10feb87dfe7beb5e8.jpg`,
+];
 
 const cards = document.querySelectorAll(".card img");
 
@@ -756,8 +763,6 @@ function nextStageOpen() {
 }
 
 function stagePageMoveFunction(num) {
-  document.querySelector(".DORPIMG").innerHTML = "";
-
   const cards = Array.from(document.querySelectorAll(".card"));
   const openCards = cards.filter((card) => card.classList.contains("open"));
 
@@ -770,6 +775,7 @@ function stagePageMoveFunction(num) {
   if (nextIndex >= 0 && nextIndex < openCards.length) {
     const nextCard = openCards[nextIndex];
     game.loadStage(nextCard);
+    document.querySelector(".DORPIMG").innerHTML = "";
   } else {
     alert(num === -1 ? "🚫 No previous stage." : "🚫 No next unlocked stage.");
   }
