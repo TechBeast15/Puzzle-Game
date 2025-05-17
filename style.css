@@ -406,7 +406,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.863);
+  background-color: rgb(255, 255, 255);
 
   background-image: url("./Assets/Img/AnimationImages/WantToPlayBG.gif");
   background-position: center;
@@ -775,9 +775,12 @@ section {
 @media screen and (max-width: 576px) {
   .stagesCard {
     flex-direction: column;
+    /* border: 1px solid #000; */
+    padding-bottom: 100px;
   }
 
   .stagesCard .card {
+    
     flex-direction: column;
     width: 15rem;
   }
