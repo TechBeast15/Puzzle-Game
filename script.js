@@ -56,82 +56,77 @@ function playSound(sound) {
   }
 }
 
-window.addEventListener("load", function () {
-  const preloader = document.getElementById("preloader");
-  const fullUI = document.getElementById("fullUI");
+// window.addEventListener("load", function () {
+//   const preloader = document.getElementById("preloader");
+//   const fullUI = document.getElementById("fullUI");
+//   const loadingText = document.getElementById("loadingText");
 
-  // Create and show Loading text
-  const loadingText = document.createElement("p");
-  loadingText.id = "loadingText";
-  loadingText.textContent = "Loading...";
-  preloader.appendChild(loadingText);
+//   // Create the Enter button (initially hidden)
+//   const enterButton = document.createElement("button");
+//   enterButton.id = "enterButton";
+//   enterButton.textContent = "Play";
+//   enterButton.style.display = "none"; // Hide initially
+//   preloader.appendChild(enterButton);
 
-  // Create the Enter button (initially hidden)
-  const enterButton = document.createElement("button");
-  enterButton.id = "enterButton";
-  enterButton.textContent = "Play";
-  enterButton.style.display = "none"; // Hide initially
-  preloader.appendChild(enterButton);
+//   // Show the Play button after a short delay and remove Loading text
+//   setTimeout(() => {
+//     loadingText.style.display = "none";
+//     enterButton.style.display = "inline-block";
+//   }, 1000); // Adjust delay if needed
 
-  // Show the Play button after a short delay and remove Loading text
-  setTimeout(() => {
-    loadingText.remove();
-    enterButton.style.display = "inline-block";
-  }, 1000); // Adjust delay if needed
+//   let hasEntered = false;
 
-  let hasEntered = false;
+//   enterButton.addEventListener("click", function () {
+//     if (hasEntered) return;
+//     hasEntered = true;
+//     enterButton.disabled = true;
+//     enterButton.style.pointerEvents = "none";
 
-  enterButton.addEventListener("click", function () {
-    if (hasEntered) return;
-    hasEntered = true;
-    enterButton.disabled = true;
-    enterButton.style.pointerEvents = "none";
+//     preloader.classList.add("fade-out");
+//     fullUI.style.display = "block";
 
-    preloader.classList.add("fade-out");
-    fullUI.style.display = "block";
+//     setTimeout(() => {
+//       preloader.style.display = "none";
+//       fullUI.classList.add("fade-in");
 
-    setTimeout(() => {
-      preloader.style.display = "none";
-      fullUI.classList.add("fade-in");
+//       backgroundMusic
+//         .play()
+//         .then(() => {
+//           isMusicPlaying = true;
+//           const musicButton = document.querySelector(".musicButton");
+//           updateMusicButtonUI(musicButton);
+//         })
+//         .catch((err) => {
+//           console.warn("Autoplay blocked:", err);
+//           isMusicPlaying = false;
+//         });
 
-      backgroundMusic
-        .play()
-        .then(() => {
-          isMusicPlaying = true;
-          const musicButton = document.querySelector(".musicButton");
-          updateMusicButtonUI(musicButton);
-        })
-        .catch((err) => {
-          console.warn("Autoplay blocked:", err);
-          isMusicPlaying = false;
-        });
+//       isSoundEnabled = true;
+//     }, 1000);
+//   });
 
-      isSoundEnabled = true;
-    }, 1000);
-  });
+//   // Arrow icon adjustment based on window size
+//   const arrowIcon = document.getElementById("arrow");
+//   if (arrowIcon) {
+//     if (window.innerWidth < 576) {
+//       arrowIcon.classList.add("bi-arrow-90deg-right");
+//     } else {
+//       arrowIcon.classList.add("bi-arrow-90deg-down");
+//     }
+//   }
+// });
 
-  // Arrow icon adjustment based on window size
-  const arrowIcon = document.getElementById("arrow");
-  if (arrowIcon) {
-    if (window.innerWidth < 576) {
-      arrowIcon.classList.add("bi-arrow-90deg-right");
-    } else {
-      arrowIcon.classList.add("bi-arrow-90deg-down");
-    }
-  }
-});
-
-// Adjust arrow icon on window resize
-window.addEventListener("resize", () => {
-  const arrowIcon = document.getElementById("arrow");
-  if (window.innerWidth < 576) {
-    arrowIcon.classList.add("bi-arrow-90deg-right");
-    arrowIcon.classList.remove("bi-arrow-90deg-down");
-  } else {
-    arrowIcon.classList.add("bi-arrow-90deg-down");
-    arrowIcon.classList.remove("bi-arrow-90deg-right");
-  }
-});
+// // Adjust arrow icon on window resize
+// window.addEventListener("resize", () => {
+//   const arrowIcon = document.getElementById("arrow");
+//   if (window.innerWidth < 576) {
+//     arrowIcon.classList.add("bi-arrow-90deg-right");
+//     arrowIcon.classList.remove("bi-arrow-90deg-down");
+//   } else {
+//     arrowIcon.classList.add("bi-arrow-90deg-down");
+//     arrowIcon.classList.remove("bi-arrow-90deg-right");
+//   }
+// });
 
 const stagesCard = document.querySelector(".stagesCard");
 let horizontalScroll = 0;

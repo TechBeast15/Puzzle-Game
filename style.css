@@ -39,6 +39,7 @@ section {
     rgb(0, 0, 0) 100%
   );
 
+  
   z-index: 9999;
   opacity: 1;
   transition: opacity 1.2s ease, visibility 1.2s ease;
@@ -49,6 +50,7 @@ section {
   color: white;
   margin-bottom: 1rem;
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .preloader button {
@@ -834,6 +836,10 @@ section {
   .playNotice div {
     width: 80% !important;
     padding: 30px;
+  }
+
+  .preloader {
+    background-color: #000;
   }
 }
 
