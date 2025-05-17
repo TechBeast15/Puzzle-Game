@@ -839,8 +839,12 @@ section {
   }
 
   .preloader {
-    background-color: #000;
+    background: #000;
   }
+
+  /* .preloader #enterButton{
+    border: ;
+  } */
 
   .preloader .nameHead {
     font-weight: bolder;
