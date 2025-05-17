@@ -788,7 +788,9 @@ section {
   .GAME {
     flex-direction: column;
     align-items: center;
-    height: 75vh;
+    height: 72vh;
+
+    border: 1px solid #000;
   }
 
   .ADDNWQ {
